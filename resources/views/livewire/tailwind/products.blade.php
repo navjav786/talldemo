@@ -41,7 +41,7 @@
         </tbody>
     </table>
 
-    {{ $products->links() }}
+   <div class="mt-4"> {{ $products->links() }}</div>
 
     <div
         class="@if (!$showModal) hidden @endif flex items-center justify-center fixed left-0 bottom-0 w-full h-full bg-gray-800 bg-opacity-90">
@@ -61,9 +61,9 @@
                         <label class="block font-medium text-sm text-gray-700" for="title">
                             Name
                         </label>
-                        <input wire:model.defer="product.name"
+                        <input wire:model.lazy="product.name"
                                class="mt-2 text-sm sm:text-base pl-2 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"/>
-                        <div class="text-red-50">
+                        <div class="text-red-500">
                             {{ $errors->first('product.name') }}
                         </div>
                     </div>
@@ -71,9 +71,9 @@
                         <label class="block font-medium text-sm text-gray-700" for="title">
                             Price
                         </label>
-                        <input wire:model.defer="product.price"
+                        <input wire:model.lazy="product.price"
                                class="mt-2 text-sm sm:text-base pl-2 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"/>
-                        <div class="text-red-50">
+                        <div class="text-red-500">
                             {{ $errors->first('product.price') }}
                         </div>
                     </div>

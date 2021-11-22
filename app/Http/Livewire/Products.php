@@ -14,14 +14,28 @@ class Products extends Component
     public $productId;
     public $product;
 
-    protected $paginationTheme = 'bootstrap';
+    protected $paginationTheme = 'tailwind';
 
     public $designTemplate = 'tailwind';
 
-    /*protected $rules = [
+   /* protected $rules = [
         'product.name' => 'required',
-        'product.price' => 'required|numeric',
+        'product.price' => 'required|numeric|between:1,150',
     ];*/
+
+    // Real time validation, in blade change wire:model.defer to wire:model or wire:model.lazy
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
+    public function rules(){
+        return [
+            'product.name' => 'required',
+            'product.price' => 'required|numeric|between:1,150',
+        ];
+    }
 
     public function render()
     {
@@ -46,7 +60,7 @@ class Products extends Component
 
     public function save()
     {
-        //$this->validate();
+        $this->validate();
 
         if (!is_null($this->productId)) {
             $this->product->save();
